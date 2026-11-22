@@ -1,0 +1,8 @@
+{
+  "name": "HalvenMotos | Ride Out",
+  "description": "HalvenMotos superbikes in four satin pearl paints: magenta satin, deep sapphire, cocoa copper and violet pearl, complete with full motorcycle catalog, speed comparison lab, gear store, and configurator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

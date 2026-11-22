@@ -1,0 +1,695 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Albert Sans";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/albertsans/v4/i7dOIFdwYjGaAMFtZd_QA1ZbYFc.woff2")
+    format("woff2");
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+    font-family: "Albert Sans", Arial, sans-serif;
+    background-color: #782956;
+    color: #1d222b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   HalvenMotos Exact Hero Styles (Sections 3 - 10, 18 - 19)
+   ========================================================================== */
+
+.hm-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #782956;
+  font-family: "Albert Sans", Arial, sans-serif;
+  color: #1d222b;
+  --u: 1px;
+}
+
+.hm-hero * {
+  box-sizing: border-box;
+}
+
+.hm-hero button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.hm-hero :focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.hm-hero .hm-spec-panel :focus-visible {
+  outline: 2px solid #1d222b;
+  outline-offset: 3px;
+}
+
+.hm-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Pending state before font + sprite settle (when html.js is active) */
+html.js .hm-hero.pending .hm-word,
+html.js .hm-hero.pending .hm-canvas,
+html.js .hm-hero.pending .hm-nav,
+html.js .hm-hero.pending .hm-arrow,
+html.js .hm-hero.pending .hm-spec-panel {
+  opacity: 0;
+}
+
+/* Layer 0: Dot grid */
+.hm-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.29) 0,
+    rgba(255, 255, 255, 0.29) 1.15px,
+    transparent 1.75px
+  );
+  -webkit-mask-image: linear-gradient(to bottom, #000 25%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 25%, transparent 100%);
+}
+
+/* Layer 1: Word RIDE OUT */
+.hm-word {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hm-word svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hm-word text {
+  fill: #ffffff;
+  font-family: "Albert Sans", Arial, sans-serif;
+  font-weight: 450;
+}
+
+/* Layer 2: WebGL Bikes Canvas */
+.hm-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+}
+
+/* Layer 3: Drag Surface */
+.hm-drag {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.hm-drag.is-dragging {
+  cursor: grabbing;
+}
+
+/* Layer 4: Nav */
+.hm-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(72 * var(--u));
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hm-hero.short .hm-nav,
+.hm-hero.tall .hm-nav {
+  height: 56px;
+}
+
+.hm-nav button {
+  pointer-events: auto;
+}
+
+.hm-menu-btn {
+  position: absolute;
+  left: calc(31.5 * var(--u));
+  top: calc(15.5 * var(--u));
+  width: max(30px, calc(40 * var(--u)));
+  height: max(30px, calc(40 * var(--u)));
+  border-radius: 999px;
+  background-color: #ffffff !important;
+  color: #1d222b;
+  display: grid;
+  place-items: center;
+}
+
+.hm-menu-btn svg {
+  width: max(10px, calc(12 * var(--u)));
+  height: max(8px, calc(10 * var(--u)));
+}
+
+.hm-hero.short .hm-menu-btn {
+  left: 14px;
+  top: 9px;
+  width: 32px;
+  height: 32px;
+}
+.hm-hero.short .hm-menu-btn svg {
+  width: 12px;
+  height: 10px;
+}
+
+.hm-hero.tall .hm-menu-btn {
+  left: 16px;
+  top: 13px;
+  width: 34px;
+  height: 34px;
+}
+.hm-hero.tall .hm-menu-btn svg {
+  width: 12px;
+  height: 10px;
+}
+
+.hm-hero.tall.narrow .hm-menu-btn {
+  left: 10px;
+}
+
+.hm-hero.tall.tablet .hm-menu-btn {
+  left: 24px;
+  top: 20px;
+  width: 46px;
+  height: 46px;
+}
+.hm-hero.tall.tablet .hm-menu-btn svg {
+  width: 15px;
+  height: 12px;
+}
+
+.hm-logo {
+  position: absolute;
+  left: 50%;
+  top: calc(35.8 * var(--u));
+  transform: translate(-50%, -50%);
+  margin: 0;
+  margin-left: calc(-1.5 * var(--u));
+  font-weight: 400;
+  font-size: max(15px, calc(22.2 * var(--u)));
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: 0.032em;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.hm-logo sup {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: 0.38em;
+  letter-spacing: 0;
+}
+
+.hm-hero.short .hm-logo {
+  top: 25px;
+  font-size: 16px;
+  margin-left: 0;
+}
+
+.hm-hero.tall .hm-logo {
+  top: 30px;
+  font-size: 17px;
+  margin-left: 0;
+}
+
+.hm-hero.tall.narrow .hm-logo {
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+.hm-hero.tall.tablet .hm-logo {
+  top: 43px;
+  font-size: 25px;
+}
+
+.hm-contact-btn {
+  position: absolute;
+  right: calc(40 * var(--u));
+  top: calc(17 * var(--u));
+  width: max(92px, calc(127 * var(--u)));
+  height: max(28px, calc(39 * var(--u)));
+  border-radius: 99px;
+  background-color: #ffffff !important;
+  color: #1d222b;
+  font-size: max(11px, calc(12.6 * var(--u)));
+  font-weight: 540;
+  letter-spacing: 0.024em;
+  white-space: nowrap;
+  display: grid;
+  place-items: center;
+}
+
+.hm-hero.short .hm-contact-btn {
+  right: 14px;
+  top: 10px;
+  width: 98px;
+  height: 30px;
+  font-size: 11.5px;
+}
+
+.hm-hero.tall .hm-contact-btn {
+  right: 16px;
+  top: 14px;
+  width: 98px;
+  height: 32px;
+  font-size: 11.5px;
+}
+
+.hm-hero.tall.narrow .hm-contact-btn {
+  right: 10px;
+  width: 86px;
+  font-size: 11px;
+}
+
+.hm-hero.tall.tablet .hm-contact-btn {
+  right: 24px;
+  top: 21px;
+  width: 134px;
+  height: 44px;
+  font-size: 14.5px;
+}
+
+/* Layer 5: Arrow Buttons */
+.hm-arrow {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background-color: #ffe100 !important;
+  color: #16140a !important;
+  display: grid;
+  place-items: center;
+}
+
+.hm-arrow::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.hm-arrow svg {
+  width: 40%;
+  height: 40%;
+}
+
+/* Layer 4: Spec Row */
+.hm-spec-panel {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  background-color: rgba(246, 246, 246, 0.94);
+  color: #1d222b;
+  bottom: calc(29 * var(--u));
+  width: min(calc(100% - 48px), max(calc(1313 * var(--u)), 880px));
+  padding: calc(16 * var(--u)) calc(29 * var(--u)) calc(13.5 * var(--u)) calc(32 * var(--u));
+  border-radius: max(12px, calc(17 * var(--u)));
+}
+
+.hm-hero.short .hm-spec-panel {
+  bottom: 8px;
+  width: min(calc(100% - 20px), 960px);
+  padding: 6px 10px 7px;
+  border-radius: 12px;
+}
+
+.hm-hero.tall .hm-spec-panel {
+  bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  width: min(calc(100% - 20px), 780px);
+  padding: 10px 12px 11px;
+  border-radius: 14px;
+}
+
+.hm-hero.tall.roomy .hm-spec-panel {
+  padding: 16px 15px 18px;
+  border-radius: 17px;
+}
+
+.hm-hero.tall.tablet .hm-spec-panel {
+  bottom: 24px;
+  width: min(calc(100% - 40px), 960px);
+  padding: 24px 26px 28px;
+  border-radius: 22px;
+}
+
+.hm-spec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: max(24px, calc(30 * var(--u)));
+}
+
+.hm-hero.short .hm-spec-head {
+  height: 26px;
+}
+.hm-hero.tall .hm-spec-head {
+  height: 30px;
+}
+.hm-hero.tall.tablet .hm-spec-head {
+  height: 42px;
+}
+
+.hm-spec-title {
+  margin: 0;
+  line-height: 1;
+  font-weight: 435;
+  letter-spacing: -0.013em;
+  font-size: max(13px, calc(18 * var(--u)));
+  color: #1d222b;
+  white-space: nowrap;
+}
+
+.hm-hero.short .hm-spec-title {
+  font-size: 13px;
+}
+.hm-hero.tall .hm-spec-title {
+  font-size: 15px;
+}
+.hm-hero.tall.roomy .hm-spec-title {
+  font-size: 17px;
+}
+.hm-hero.tall.tablet .hm-spec-title {
+  font-size: 23px;
+}
+
+.hm-spec-cta {
+  border-radius: 99px;
+  background-color: #ffffff !important;
+  color: #1d222b;
+  box-shadow: 0 2px 8px rgba(20, 20, 30, 0.07);
+  font-weight: 530;
+  letter-spacing: 0.006em;
+  white-space: nowrap;
+  display: grid;
+  place-items: center;
+  width: max(100px, calc(135 * var(--u)));
+  height: max(24px, calc(30 * var(--u)));
+  font-size: max(11px, calc(12.5 * var(--u)));
+}
+
+.hm-hero.short .hm-spec-cta {
+  width: 100px;
+  height: 24px;
+  font-size: 11px;
+}
+.hm-hero.tall .hm-spec-cta {
+  width: 108px;
+  height: 28px;
+  font-size: 11.5px;
+}
+.hm-hero.tall.roomy .hm-spec-cta {
+  width: 116px;
+  height: 32px;
+  font-size: 12px;
+}
+.hm-hero.tall.tablet .hm-spec-cta {
+  width: 146px;
+  height: 42px;
+  font-size: 14.5px;
+}
+
+.hm-spec-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: calc(20 * var(--u));
+  display: grid;
+  grid-template-columns:
+    minmax(max-content, 186fr)
+    minmax(max-content, 223fr)
+    minmax(max-content, 223fr)
+    minmax(max-content, 212fr)
+    minmax(max-content, 229fr)
+    minmax(max-content, 176fr);
+  row-gap: 0;
+}
+
+.hm-hero.short .hm-spec-list {
+  margin-top: 4px;
+  grid-template-columns: repeat(6, minmax(max-content, 1fr));
+}
+
+.hm-hero.short.cols-3 .hm-spec-list {
+  grid-template-columns: repeat(3, minmax(max-content, 1fr));
+  row-gap: 3px;
+}
+
+.hm-hero.tall .hm-spec-list {
+  margin-top: 7px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 7px;
+}
+
+.hm-hero.tall.roomy .hm-spec-list {
+  margin-top: 14px;
+  row-gap: 16px;
+}
+
+.hm-hero.tall.cols-3 .hm-spec-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  row-gap: 12px;
+}
+
+.hm-hero.tall.cols-3.roomy .hm-spec-list {
+  row-gap: 16px;
+}
+
+.hm-hero.tall.tablet .hm-spec-list {
+  margin-top: 24px;
+}
+
+.hm-hero.tall.cols-3.tablet .hm-spec-list {
+  row-gap: 28px;
+}
+
+.hm-spec-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto max-content;
+  align-items: center;
+  column-gap: calc(15 * var(--u));
+  padding: calc(2 * var(--u)) calc(6 * var(--u)) calc(2 * var(--u)) calc(47 * var(--u));
+}
+
+.hm-spec-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(29, 34, 43, 0.11);
+}
+
+/* First item on row: wide & short (6 cols) */
+.hm-spec-item:first-child {
+  padding-left: calc(3 * var(--u));
+}
+.hm-spec-item:first-child::before {
+  display: none;
+}
+
+.hm-hero.short .hm-spec-item {
+  column-gap: 6px;
+  padding: 1px 4px 1px 9px;
+}
+.hm-hero.short .hm-spec-item:first-child {
+  padding-left: 2px;
+}
+.hm-hero.short.cols-3 .hm-spec-item:nth-child(3n + 1) {
+  padding-left: 2px;
+}
+.hm-hero.short.cols-3 .hm-spec-item:nth-child(3n + 1)::before {
+  display: none;
+}
+
+.hm-hero.tall .hm-spec-item {
+  column-gap: 8px;
+  padding: 1px 2px 1px 12px;
+}
+.hm-hero.tall.narrow .hm-spec-item {
+  column-gap: 6px;
+  padding-left: 8px;
+}
+.hm-hero.tall.tablet .hm-spec-item {
+  column-gap: 12px;
+  padding-left: 20px;
+}
+
+/* 2-col tall row starts */
+.hm-hero.tall:not(.cols-3) .hm-spec-item:nth-child(2n + 1) {
+  padding-left: 2px;
+}
+.hm-hero.tall:not(.cols-3) .hm-spec-item:nth-child(2n + 1)::before {
+  display: none;
+}
+
+/* 3-col tall row starts */
+.hm-hero.tall.cols-3 .hm-spec-item:nth-child(3n + 1) {
+  padding-left: 2px;
+}
+.hm-hero.tall.cols-3 .hm-spec-item:nth-child(3n + 1)::before {
+  display: none;
+}
+
+.hm-spec-icon {
+  width: max(15px, calc(18 * var(--u)));
+  color: #1d222b;
+}
+
+.hm-spec-icon svg {
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hm-hero.short .hm-spec-icon {
+  width: 15px;
+}
+.hm-hero.tall .hm-spec-icon {
+  width: 16px;
+}
+.hm-hero.tall.tablet .hm-spec-icon {
+  width: 22px;
+}
+
+.hm-spec-dl {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.hm-spec-dt {
+  color: #4b4f57;
+  font-weight: 400;
+  white-space: nowrap;
+  font-size: max(11px, calc(12.9 * var(--u)));
+  letter-spacing: -0.02em;
+}
+
+.hm-hero.short .hm-spec-dt {
+  font-size: 11px;
+}
+.hm-hero.tall .hm-spec-dt {
+  font-size: 11.5px;
+}
+.hm-hero.tall.narrow .hm-spec-dt {
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.hm-hero.tall.roomy .hm-spec-dt {
+  font-size: 12.5px;
+}
+.hm-hero.tall.roomy.narrow .hm-spec-dt {
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.hm-hero.tall.tablet .hm-spec-dt {
+  font-size: 15px;
+}
+
+.hm-spec-dd {
+  margin: 0;
+  font-weight: 560;
+  letter-spacing: 0.008em;
+  white-space: nowrap;
+  color: #1d222b;
+  font-size: max(11.5px, calc(14.5 * var(--u)));
+  margin-top: calc(7.5 * var(--u));
+  font-variant-numeric: tabular-nums;
+}
+
+.hm-hero.short .hm-spec-dd {
+  font-size: 11.5px;
+  margin-top: 1px;
+}
+.hm-hero.tall .hm-spec-dd {
+  font-size: 13px;
+  margin-top: 2px;
+}
+.hm-hero.tall.roomy .hm-spec-dd {
+  font-size: 14.5px;
+  margin-top: 3px;
+}
+.hm-hero.tall.tablet .hm-spec-dd {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .hm-hero.pending .hm-word,
+  html.js .hm-hero.pending .hm-canvas,
+  html.js .hm-hero.pending .hm-nav,
+  html.js .hm-hero.pending .hm-arrow,
+  html.js .hm-hero.pending .hm-spec-panel {
+    opacity: 1 !important;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
